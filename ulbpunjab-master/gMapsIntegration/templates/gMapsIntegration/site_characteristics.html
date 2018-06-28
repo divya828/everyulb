@@ -1,0 +1,254 @@
+<form action="{% url "edit_add_more" ids=landfill.id %}" method="post">
+  {% csrf_token %}
+  <div class="">
+
+      <button type="button" class="btn bg-danger"><h2>Sensitivity Index: {{score}}<br></h2></button>
+
+  </div>
+
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Attribute</th>
+        <th>Attribute Weightage</th>
+        <th>Attribute Measurement</th>
+        <th>Sensitivity Index</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="6" align="center"><strong>I - Site specific criteria</strong></td>
+      </tr>
+
+      <tr>
+        <th scope="row">1</th>
+        <td>Distance from nearest water supply source (m)</td>
+        <td>69</td>
+        <td><input type="text" name="distance_water" value="{{details_extra.distance_water}}" id="site_characteristics_0"></td>
+        <td>{{sen.distance_water.sensitivity}}</td>
+        <td>{{sen.distance_water.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Depth of filling of waste (m)</td>
+        <td>64</td>
+        <td><input type="text" name="depth_waste" value="{{details_extra.depth_waste}}" id="site_characteristics_1"></td>
+        <td>{{sen.depth_waste.sensitivity}}</td>
+        <td>{{sen.depth_waste.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td >Area of the dumpsite (Ha)</td>
+        <td>61</td>
+        <td ><input type="text" name="area" value="{{details_extra.area}}" id="site_characteristics_2"></td>
+        <td >{{sen.area.sensitivity}}</td>
+        <td >{{sen.area.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td >Groundwater depth (m)</td>
+        <td>54</td>
+        <td ><input type="text" name="groundwater_depth" value="{{details_extra.groundwater_depth}}" id="site_characteristics_3"></td>
+        <td >{{sen.groundwater_depth.sensitivity}}</td>
+        <td >{{sen.groundwater_depth.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td >Permeability of soil (1 x 10 cm/s)</td>
+        <td>54</td>
+        <td ><input type="text" name="soil_perm" value="{{details_extra.soil_perm}}" id="site_characteristics_4"></td>
+        <td >{{sen.soil_perm.sensitivity}}</td>
+        <td >{{sen.soil_perm.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td >Groundwater quality</td>
+        <td>50</td>
+        <td ><input type="text" name="groundwater_quality" value="{{details_extra.groundwater_quality}}" id="site_characteristics_5"></td>
+        <td >{{sen.groundwater_quality.sensitivity}}</td>
+        <td >{{sen.groundwater_quality.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td >Distance to critical habitats such as wetlands and reserved forest (km)</td>
+        <td>46</td>
+        <td ><input type="text" name="distance_habitat" value="{{details_extra.distance_habitat}}" id="site_characteristics_6"></td>
+        <td >{{sen.distance_habitat.sensitivity}}</td>
+        <td >{{sen.distance_habitat.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td >Distance to the nearest airport (km)</td>
+        <td>46</td>
+        <td ><input type="text" name="distance_airport" value="{{details_extra.distance_airport}}" id="site_characteristics_7"></td>
+        <td >{{sen.distance_airport.sensitivity}}</td>
+        <td >{{sen.distance_airport.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td >Distance from surface water body (m)</td>
+        <td>41</td>
+        <td ><input type="text" name="distance_water_body" value="{{details_extra.distance_water_body}}" id="site_characteristics_8"></td>
+        <td >{{sen.distance_water_body.sensitivity}}</td>
+        <td >{{sen.distance_water_body.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td >Type of underlying soil (% clay)</td>
+        <td>41</td>
+        <td ><input type="text" name="type_soil" value="{{details_extra.type_soil}}" id="site_characteristics_9"></td>
+        <td >{{sen.type_soil.sensitivity}}</td>
+        <td >{{sen.type_soil.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">11</th>
+        <td >Life of the site for future use (years)</td>
+        <td>36</td>
+        <td ><input type="text" name="life_future" value="{{details_extra.life_future}}" id="site_characteristics_10"></td>
+        <td >{{sen.type_soil.sensitivity}}</td>
+        <td >{{sen.type_soil.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">12</th>
+        <td >Type of waste (MSW/HW)</td>
+        <td>30</td>
+        <td ><input type="text" name="waste_type" value="{{details_extra.waste_type}}" id="site_characteristics_11"></td>
+        <td >{{sen.waste_type.sensitivity}}</td>
+        <td >{{sen.waste_type.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">13</th>
+        <td >Total quantity of waste at site (t)</td>
+        <td>30</td>
+        <td ><input type="text" name="waste_quantity_site" value="{{details_extra.waste_quantity_site}}" id="site_characteristics_12"></td>
+        <td >{{sen.waste_quantity_site.sensitivity}}</td>
+        <td >{{sen.waste_quantity_site.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">14</th>
+        <td >Quantity of wastes disposed (t/day)</td>
+        <td>24</td>
+        <td ><input type="text" name="waste_quantity_disposed" value="{{details_extra.waste_quantity_disposed}}" id="site_characteristics_13"></td>
+        <td >{{sen.waste_quantity_disposed.sensitivity}}</td>
+        <td >{{sen.waste_quantity_disposed.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">15</th>
+        <td >Distance to the nearest village in the predominant wind (m)</td>
+        <td>21</td>
+        <td ><input type="text" name="distance_village" value="{{details_extra.distance_village}}" id="site_characteristics_14"></td>
+        <td >{{sen.distance_village.sensitivity}}</td>
+        <td >{{sen.distance_village.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">16</th>
+        <td >Flood proness (flood period in years)</td>
+        <td>16</td>
+        <td ><input type="text" name="flood" value="{{details_extra.flood}}" id="site_characteristics_15"></td>
+        <td >{{sen.flood.sensitivity}}</td>
+        <td >{{sen.flood.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">17</th>
+        <td >Annual rainfall at site (cm/y)</td>
+        <td>11</td>
+        <td ><input type="text" name="rainfall_annual" value="{{details_extra.rainfall_annual}}" id="site_characteristics_16"></td>
+        <td >{{sen.rainfall_annual.sensitivity}}</td>
+        <td >{{sen.rainfall_annual.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">18</th>
+        <td >Distance from the city (km)</td>
+        <td>7</td>
+        <td ><input type="text" name="distance_city" value="{{details_extra.distance_city}}" id="site_characteristics_17"></td>
+        <td >{{sen.distance_city.sensitivity}}</td>
+        <td >{{sen.distance_city.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">19</th>
+        <td >Public acceptance</td>
+        <td>7</td>
+        <td ><input type="text" name="public_acceptance" value="{{details_extra.public_acceptance}}" id="site_characteristics_18"></td>
+        <td >{{sen.public_acceptance.sensitivity}}</td>
+        <td >{{sen.public_acceptance.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">20</th>
+        <td >Ambient air quality - CH 4 (%)</td>
+        <td>3</td>
+        <td ><input type="text" name="ambient_air" value="{{details_extra.ambient_air}}" id="site_characteristics_19"></td>
+        <td >{{sen.ambient_air.sensitivity}}</td>
+        <td >{{sen.ambient_air.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="6" align="center"><strong>II – Related to characteristics of waste at dumpsite</strong></td>
+      </tr>
+      <tr>
+        <th scope="row">21</th>
+        <td >Hazardous contents in waste (%)</td>
+        <td>71</td>
+        <td ><input type="text" name="waste_hazard" value="{{details_extra.waste_hazard}}" id="site_characteristics_20"></td>
+        <td >{{sen.waste_hazard.sensitivity}}</td>
+        <td >{{sen.waste_hazard.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">22</th>
+        <td >Biodegradable fraction of waste at site (%)</td>
+        <td>66</td>
+        <td ><input type="text" name="biodegradable_waste" value="{{details_extra.biodegradable_waste}}" id="site_characteristics_21"></td>
+        <td >{{sen.biodegradable_waste.sensitivity}}</td>
+        <td >{{sen.biodegradable_waste.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">23</th>
+        <td >Age of filling (years)</td>
+        <td>58</td>
+        <td ><input type="text" name="age_filing" value="{{details_extra.age_filing}}" id="site_characteristics_22"></td>
+        <td >{{sen.age_filing.sensitivity}}</td>
+        <td >{{sen.age_filing.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">24</th>
+        <td >Moisture of waste at site (%)</td>
+        <td>26</td>
+        <td ><input type="text" name="waste_moisture" value="{{details_extra.waste_moisture}}" id="site_characteristics_23"></td>
+        <td >{{sen.waste_moisture.sensitivity}}</td>
+        <td >{{sen.waste_moisture.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="6" align="center"><strong>III –Related to leachate quality</strong></td>
+      </tr>
+      <tr>
+        <th scope="row">25</th>
+        <td >BOD of leachate (mg/L)</td>
+        <td>36</td>
+        <td ><input type="text" name="bod" value="{{details_extra.bod}}" id="site_characteristics_24"></td>
+        <td >{{sen.bod.sensitivity}}</td>
+        <td >{{sen.bod.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">26</th>
+        <td >COD of leachate (mg/L)</td>
+        <td>19</td>
+        <td ><input type="text" name="cod" value="{{details_extra.cod}}" id="site_characteristics_25"></td>
+        <td >{{sen.cod.sensitivity}}</td>
+        <td >{{sen.cod.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">27</th>
+        <td >TDS of leachate (mg/L)</td>
+        <td>13</td>
+        <td ><input type="text" name="tds" value="{{details_extra.tds}}" id="site_characteristics_26"></td>
+        <td >{{sen.tds.sensitivity}}</td>
+        <td >{{sen.tds.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="4" align="center"><strong>Result</strong></td>
+        <td><strong>{{score}}</strong></td>
+        <td><input type="submit" name="edit_add_more" value="SUBMIT" class="btn btn-primary button-sub pull-right"></td>
+      </tr>
+      </form>
+    </tbody>
+  </table>

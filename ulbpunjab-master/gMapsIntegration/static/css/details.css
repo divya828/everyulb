@@ -1,0 +1,21 @@
+
+/*
+ * Sidebar
+ */
+
+body {
+  padding: 54px;
+}
+
+.card-header {
+  background: #d4f1e3;
+}
+
+.white-part {
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+#accordion .card a:hover {
+  text-decoration: none !important; 
+}

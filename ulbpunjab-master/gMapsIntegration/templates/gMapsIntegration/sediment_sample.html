@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Sediment Sample: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/sediment_sample.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block data_mapping %}
+  active
+{% endblock %}
+{% block image_data_mapping %}
+  <img src="{% static 'images/ic-report.svg' %}" class="float-left">
+{% endblock %}
+{% block monitoring_url %}href="{% url 'monitoring' ids=landfill.id %}"{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="Title">
+    <h1><a href="{% url "sediment" ids=landfill.id %}">Sediment -> </a> Sample No. {{sam_num}} Sediment for {{landfill.name}}</h1>
+  </div>
+
+  <div class="row-fluid">
+    <form action="?" method="post">
+      {% csrf_token %}
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>SI. No</th>
+            <th>Parameter</th>
+            <th>Unit</th>
+            <th>Method of Testing</th>
+            <th>Sediment Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Lead as Pb</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s0" value="{{landfill_sam_data.0.data}}"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Cadmium as Cd</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s1" value="{{landfill_sam_data.1.data}}"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chromium as Cr</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s2" value="{{landfill_sam_data.2.data}}"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Zinc as Zn</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s3" value="{{landfill_sam_data.3.data}}"></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Mercury as Hg</td>
+            <td>mg/kg</td>
+            <td>USEPA 3050B</td>
+            <td><input type="text" name="s4" value="{{landfill_sam_data.4.data}}"></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Copper as Cu</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s5" value="{{landfill_sam_data.5.data}}"></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Nickel as Ni</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s6" value="{{landfill_sam_data.6.data}}"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Arsenic as As</td>
+            <td>mg/kg</td>
+            <td>ASTM D 5198</td>
+            <td><input type="text" name="s7" value="{{landfill_sam_data.7.data}}"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>BTEX</td>
+            <td>mg/kg</td>
+            <td>USEPA 8260 B</td>
+            <td><input type="text" name="s8" value="{{landfill_sam_data.8.data}}"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Polynuclear Aromatic Hydrocarbons</td>
+            <td>mg/kg</td>
+            <td>USEPA 8310</td>
+            <td><input type="text" name="s9" value="{{landfill_sam_data.9.data}}"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Polychlorinated Biphenyls</td>
+            <td>mg/kg</td>
+            <td>USEPA 8082</td>
+            <td><input type="text" name="s10" value="{{landfill_sam_data.10.data}}"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Oil and Grease</td>
+            <td>mg/kg</td>
+            <td>USEPA 9071 B</td>
+            <td><input type="text" name="s11" value="{{landfill_sam_data.11.data}}"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Clay Fraction</td>
+            <td>-</td>
+            <td>SSSA</td>
+            <td><input type="text" name="s12" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Texture</td>
+            <td>-</td>
+            <td>SSSA</td>
+            <td><input type="text" name="s13" value="{{landfill_sam_data.13.data}}"></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Dry Matter</td>
+            <td>%</td>
+            <td>ASTM Method</td>
+            <td><input type="text" name="s14" value="{{landfill_sam_data.14.data}}"></td>
+          </tr>
+          <tr>
+            <td colspan="4" align="center"><strong>Completed?</strong></td>
+            <td><input name="check" type="checkbox" checked></td>
+          </tr>
+          <tr>
+            <td colspan="4"></td>
+            <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    var api_sendDistricts = "{% url 'api_sendDistricts' %}"
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/sediment_sample.js" %}">
+  </script>
+{% endblock %}

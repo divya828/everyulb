@@ -1,0 +1,799 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Form4: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/form4.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "home" %}">EveryULB</a>
+  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+    <ul class="navbar-nav container">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "home" %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "landfilladd" %}">Add Landfills</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "add_data" %}">Add Data</a>
+      </li>
+      <form class="form-inline" action="{% url "search" %}" method="post">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
+      </form>
+    </ul>
+  <!-- </div> -->
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="Title" align="center">
+    <h1>Form No. 4 for {{landfill.name}}</h1>
+  </div>
+
+  <div class="row-fluid">
+    <form action="?" method="post">
+      {% csrf_token %}
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Name of the City/Town and State</td>
+            <td><input type="text" name="s0" value="{{landfill_sam_data.0.data}}"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Population</td>
+            <td><input type="text" name="s1" value="{{landfill_sam_data.1.data}}"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Area in sq. kilometers</td>
+            <td><input type="text" name="s2" value="{{landfill_sam_data.2.data}}"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              Name & Address of local body
+              <br>
+              Telephone No.
+              <br>
+              Fax No.
+              <br>
+              E-mail:
+            </td>
+            <td>
+              <textarea name="s3" rows="4" cols="30%"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              Name of officer in-charge dealing with solid waste management (SOLID WASTEM)
+              <br>
+              Phone No:
+              <br>
+              Fax No:
+              <br>
+              E-mail:
+            </td>
+            <td>
+              <textarea name="s4" rows="3" cols="30%"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              Number of households in the city/town
+              <br>
+              Number of non-residential premises in the city
+              <br>
+              Number of election/ administrative wards in the city/town
+            </td>
+            <td>
+              <textarea name="s5" rows="3" cols="30%"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Quantity of Solid waste (solid waste)</td>
+            <td><input type="text" name="s6" value="{{landfill_sam_data.6.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Estimated Quantity of solid waste generated in the local body area per day in metric tones
+            </td>
+            <td><input type="text" name="s7" value="{{landfill_sam_data.7.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Quantity of solid waste collected per day
+            </td>
+            <td><input type="text" name="s8" value="{{landfill_sam_data.8.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Per capita waste collected per day
+            </td>
+            <td><input type="text" name="s9" value="{{landfill_sam_data.9.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Quantity of solid waste processed
+            </td>
+            <td><input type="text" name="s10" value="{{landfill_sam_data.10.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Quantity of solid waste disposed at dumpsite/ landfill
+            </td>
+            <td><input type="text" name="s11" value="{{landfill_sam_data.11.data}}"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Status of Solid Waste Management service</td>
+            <td><input type="text" name="s12" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Segregation and storage of waste at source
+              <br>
+              Whether SOLID WASTE is stored at source in domestic/commercial/ institutional bins, If yes,
+              <br>
+              Percentage of households practice storage of waste at source in domestic bins
+              <br>
+              Percentage of non-residential premises practice storage of waste at source in commercial /institutional bins
+              <br>
+              Percentage of households dispose or throw solid waste on the streets
+              <br>
+              Percentage of non-residential premises dispose of throw solid waste on the streets
+              <br>
+              Whether solid waste is stored at source in a segregated form, If yes,
+              <br>
+              Percentage of premises segregating the waste at source
+            </td>
+            <td><input type="text" name="s13" value="{{landfill_sam_data.11.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Door to Door Collection of solid waste</td>
+            <td><input type="text" name="s14" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Whether door to door collection (D2D) of solid waste is being done in the city/town. If yes</td>
+            <td><input type="text" name="s15" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Number of wards covered in D2D collection of waste</td>
+            <td><input type="text" name="s16" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>No. of households covered</td>
+            <td><input type="text" name="s17" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>No. of non-residential premises including commercial establishments ,hotels, restaurants educational institutions/ offices etc covered</td>
+            <td><input type="text" name="s18" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Percentage of residential and non-residential premises covered in door to door collection through :
+              <br>
+              Motorized vehicle
+              <br>
+              Containerized tricycle/handcart
+              <br>
+              Other device
+            </td>
+            <td><input type="text" name="s19" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              If not, method of primary collection adopted
+            </td>
+            <td><input type="text" name="s20" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Sweeping of streets
+            </td>
+            <td><input type="text" name="s21" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Length of roads, streets, lanes, bye-lanes in the city that need to be cleaned
+            </td>
+            <td><input type="text" name="s22" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Frequency of street sweepings and percentage of population covered
+            </td>
+            <td><input type="text" name="s23" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Tools used
+              <br>
+              Manual sweeping
+              <br>
+              Mechanical sweeping
+              <br>
+              Whether long handle broom used by sanitation workers
+              <br>
+              Whether each sanitation worker is given handcart/tricycle for collection of waste
+              <br>
+              Whether handcart / tricycle is containerized
+              <br>
+              Whether the collection tool synchronizes with collection/ waste storage containers utilized
+            </td>
+            <td><input type="text" name="s24" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Secondary Waste Storage facilities</td>
+            <td><input type="text" name="s25" value="{{landfill_sam_data.13.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              No. and type of waste storage depots in the city/town
+              <br>
+              Open waste storage sites
+              <br>
+              Masonry bins
+              <br>
+              Cement concrete cylinder bins
+              <br>
+              Dhalao/covered rooms/space
+              <br>
+              Covered metal/plastic containers
+              <br>
+              Upto 1.1 m3 bins
+              <br>
+              2 to 5 m3 bins
+              <br>
+              Above 5m3 containers
+              <br>
+              Bin-less city
+            </td>
+            <td><input type="text" name="s26" value="{{landfill_sam_data.13.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Bin/ population ratio</td>
+            <td><input type="text" name="s27" value="{{landfill_sam_data.14.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Ward wise details of waste storage depots (attach) :
+              <br>
+              Ward No:
+              <br>
+              Area:
+              <br>
+              Population:
+              <br>
+              No. of bins placed
+              <br>
+              Total volume of bins placed
+            </td>
+            <td><input type="text" name="s28" value="{{landfill_sam_data.14.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Total storage capacity of waste storage facilities in cubic meters</td>
+            <td><input type="text" name="s29" value="{{landfill_sam_data.15.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Total waste actually stored at the waste storage depots daily</td>
+            <td><input type="text" name="s30" value="{{landfill_sam_data.16.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Give frequency of collection of waste from the depots
+              <br>
+              Number of bins cleared
+            </td>
+            <td><input type="text" name="s31" value="{{landfill_sam_data.17.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether storage depots have facility for storage of segregated waste in green, blue and black bins
+            </td>
+            <td><input type="text" name="s32" value="{{landfill_sam_data.18.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether lifting of solid waste from storage depots is manual or mechanical. Give percentage
+              <br>
+              (%) of Manual Lifting of solid waste
+              <br>
+              (%) of Mechanical lifting
+            </td>
+            <td><input type="text" name="s33" value="{{landfill_sam_data.19.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              If mechanical – specify the method used
+            </td>
+            <td><input type="text" name="s34" value="{{landfill_sam_data.20.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether solid waste is lifted from door to door and transported to treatment plant directly in a segregated form
+            </td>
+            <td><input type="text" name="s35" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Waste transportation per day
+              <br>
+              Type and Number of vehicles used
+              <br>
+              Animal cart
+              <br>
+              Tractors
+              <br>
+              Non tipping Truck
+              <br>
+              Tipping Truck
+              <br>
+              Dumper Placers
+              <br>
+              Refuse collectors
+              <br>
+              Compactors
+              <br>
+              Others
+              <br>
+              JCB/loader
+            </td>
+            <td><input type="text" name="s36" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Frequency of transportation of waste
+            </td>
+            <td><input type="text" name="s37" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Quantity of waste transported each day
+            </td>
+            <td><input type="text" name="s38" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Percentage of total waste transported daily
+            </td>
+            <td><input type="text" name="s39" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Waste Treatment Technologies used
+            </td>
+            <td><input type="text" name="s40" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether solid waste is processed
+            </td>
+            <td><input type="text" name="s41" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              If yes, Quantity of waste processed daily
+            </td>
+            <td><input type="text" name="s42" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether treatment is done by local body or through an agency
+            </td>
+            <td><input type="text" name="s43" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Land(s) available with the local body for waste processing (in Hectares)
+            </td>
+            <td><input type="text" name="s44" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Land currently utilized for waste processing
+            </td>
+            <td><input type="text" name="s45" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Solid waste processing facilities in operation
+            </td>
+            <td><input type="text" name="s46" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Solid waste processing facilities under construction
+            </td>
+            <td><input type="text" name="s47" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance of processing facilities from city/town boundary
+            </td>
+            <td><input type="text" name="s48" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Details of technologies adopted
+            </td>
+            <td><input type="text" name="s49" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Composting ,
+            </td>
+            <td><input type="text" name="s50" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Vermi composting
+            </td>
+            <td><input type="text" name="s51" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Bio-methanation
+            </td>
+            <td><input type="text" name="s52" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Refuse Derived Fuel
+            </td>
+            <td><input type="text" name="s53" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Waste to Energy technology such as incineration, gasification, pyrolysis or any other technology ( give detail)
+            </td>
+            <td><input type="text" name="s54" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Co-processing
+            </td>
+            <td><input type="text" name="s55" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Combustible waste supplied to cement plant
+            </td>
+            <td><input type="text" name="s56" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Combustible waste supplied to solid waste based power plants
+            </td>
+            <td><input type="text" name="s57" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Others
+            </td>
+            <td><input type="text" name="s58" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Solid waste disposal facilities
+            </td>
+            <td><input type="text" name="s59" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              No. of dumpsites sites available with the local body
+            </td>
+            <td><input type="text" name="s60" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              No. of sanitary landfill sites available with the local body
+            </td>
+            <td><input type="text" name="s61" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Area of each such sites available for waste disposal
+            </td>
+            <td><input type="text" name="s62" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Area of land currently used for waste disposal
+            </td>
+            <td><input type="text" name="s63" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance of dumpsite/landfill facility from city/town
+            </td>
+            <td><input type="text" name="s64" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance from the nearest habitation
+            </td>
+            <td><input type="text" name="s65" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance from water body
+            </td>
+            <td><input type="text" name="s66" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance from state/national highway
+            </td>
+            <td><input type="text" name="s67" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance from Airport
+            </td>
+            <td><input type="text" name="s68" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Distance from important religious places or historical monument
+            </td>
+            <td><input type="text" name="s69" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether it falls in flood prone area
+            </td>
+            <td><input type="text" name="s70" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether it falls in earthquake fault line area
+            </td>
+            <td><input type="text" name="s71" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Quantity of waste landfilled each day
+            </td>
+            <td><input type="text" name="s72" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether landfill site is fenced
+            </td>
+            <td><input type="text" name="s73" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether Lighting facility is available on site
+            </td>
+            <td><input type="text" name="s74" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether Weigh bridge facility available
+            </td>
+            <td><input type="text" name="s75" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Vehicles and equipments used at landfill (specify)
+            </td>
+            <td><input type="text" name="s76" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Manpower deployed at landfill site
+            </td>
+            <td><input type="text" name="s77" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether covering is done on daily basis
+            </td>
+            <td><input type="text" name="s78" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              If not, Frequency of covering the waste deposited at the landfill
+            </td>
+            <td><input type="text" name="s79" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Cover material used
+            </td>
+            <td><input type="text" name="s80" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Whether adequate covering material is available
+            </td>
+            <td><input type="text" name="s81" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              If not, Frequency of covering the waste deposited at the landfill
+            </td>
+            <td><input type="text" name="s82" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Provisions for gas venting provided
+            </td>
+            <td><input type="text" name="s83" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              Provision for leachate collection
+            </td>
+            <td><input type="text" name="s84" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>
+              Whether an Action Plan has been prepared for improving solid waste management practices in the city
+            </td>
+            <td><input type="text" name="s85" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>
+              What separate provisions are made for :
+              <br>
+              Dairy related activities :
+              <br>
+              Slaughter houses waste :
+              <br>
+              C&D waste (construction debris) :
+            </td>
+            <td><input type="text" name="s86" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>
+              Details of Post Closure Plan
+            </td>
+            <td><input type="text" name="s87" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>
+              How many slums are identified and whether these are provided with Solid Waste Management facilities :
+            </td>
+            <td><input type="text" name="s88" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>
+              Give details of: Local body’s own manpower deployed for collection including street sweeping, secondary storage, transportation, processing  and disposal of waste
+            </td>
+            <td><input type="text" name="s89" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>
+              Give details of: Contractor/ concessionaire’s manpower deployed for collection including street sweeping, secondary storage, transportation, processing and disposal of waste
+            </td>
+            <td><input type="text" name="s90" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>
+              Mention briefly, the difficulties being experienced by the local body in complying with provisions of these rules
+            </td>
+            <td><input type="text" name="s91" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>
+              Mention briefly, if any innovative idea is implemented to tackle a problem related to solid waste, which could be replicated by other local bodies
+            </td>
+            <td><input type="text" name="s92" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    // var latitude = {{latitude}};
+    // var longitude = {{longitude}};
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/form4.js" %}">
+  </script>
+{% endblock %}

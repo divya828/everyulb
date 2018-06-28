@@ -1,0 +1,30 @@
+<div class="row-fluid">
+  <div class="col-xs-12">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Sample Type</th>
+          <th>Total Number of Samples</th>
+          <th>Samples Completed</th>
+          <th>Percentage Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="{% url "surface_water" ids=landfill.id %}">Surface Water</a></td>
+          <td>{{amount_of_drillings}}</td>
+          <td>{{completed.c0}}</td>
+          <td id="waste_characteristics_0">{{completed.c00}}%</td>
+        </tr>
+        <tr>
+          <td><a href="{% url "ground_water" ids=landfill.id %}">Ground Water</a></td>
+          <td>{{amount_of_drillings}}</td>
+          <td>{{completed.c1}}</td>
+          <td id="waste_characteristics_1">{{completed.c11}}%</td>
+        </tr>
+        
+
+      </tbody>
+    </table>
+  </div>
+</div>

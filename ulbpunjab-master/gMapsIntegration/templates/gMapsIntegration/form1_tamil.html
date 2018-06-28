@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Form1: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/form1.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "home" %}">EveryULB</a>
+  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+    <ul class="navbar-nav container">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "home" %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "landfilladd" %}">Add Landfills</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "add_data" %}">Add Data</a>
+      </li>
+      <form class="form-inline" action="{% url "search" %}" method="post">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
+      </form>
+    </ul>
+  <!-- </div> -->
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="TOP" align="center">
+    <h1><a href="{% url "form1" ids=landfill.id langs=0 %}">Change Language to English</a></h1>
+    <h1><a href="{% url "form1" ids=landfill.id langs=1 %}">Change Language to Hindi</a></h1>
+  </div>
+  <div class="Title" align="center">
+    <h1>{{landfill.name}} க்கான படிவம் எண் 1</h1>
+  </div>
+
+  <div class="row-fluid">
+    <form action="?" method="post">
+      {% csrf_token %}
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td> அவர்கள் / நியமிக்கப்பட்ட உள்ளூர் நிறுவனம் / நிறுவனத்தின் பெயர் </td>
+            <td><input type="text" name="s0" value="{{landfill_form1.s0}}"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+               கடித முகவரி
+              <br>
+               தொலைபேசி எண்.
+              <br>
+               தொலைநகல் எண் &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; மின்னஞ்சல்
+            </td>
+            <td>
+              <textarea name="s1" rows="3" cols="35%">
+                {{landfill_form1.s1}}
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+               நோட்டல் அதிகாரி மற்றும் பதவி பெயர் (பதவிநிலை / சிகிச்சை அல்லது அகற்றும் வசதிக்கு பொறுப்பான உள்ளூர் உடல் அல்லது நிறுவனத்தால் அங்கீகரிக்கப்பட்ட உத்தியோகத்தர்)
+            </td>
+            <td><input type="text" name="s2" value="{{landfill_form1.s2}}"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+               வசதியை அமைப்பதற்கும், செயல்படுவதற்கும் அங்கீகாரம் தேவை (தயவுசெய்து தேர்வு செய்யவும்)
+            </td>
+            <td>
+              <select name="s3">
+                <option value="t1" {% if landfill_form1.s3 == "t1" %} selected="selected" {% endif %}>  கழிவு சுத்திகரிப்பு  </option>
+                <option value="t2" {% if landfill_form1.s3 == "t2" %} selected="selected" {% endif %}>  மீள் சுழற்சி  </option>
+                <option value="t3" {% if landfill_form1.s3 == "t3" %} selected="selected" {% endif %}>  சிகிச்சை  </option>
+                <option value="t4" {% if landfill_form1.s3 == "t4" %} selected="selected" {% endif %}>  நிலத்தடி நீக்கம்  </option>
+              </select> </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+               ஆவணங்களின் நகல்களை இணைக்கவும்
+              <br>
+               தள அனுமதி (உள்ளூர் உடல்)
+              <br>
+               சுற்றுச்சூழல் தீர்வுக்கான ஆதாரம்
+              <br>
+               நிறுவலுக்கு ஒப்புதல்
+              <br>
+               நகராட்சி அதிகாரசபை மற்றும் இயக்க நிறுவனத்திற்கு இடையில் ஒப்பந்தம்
+              <br>
+               திட்டத்தில் முதலீடு மற்றும் எதிர்பார்க்கப்பட்ட வருவாய்
+            </td>
+            <td>
+              <br>
+              <input name="s4" type="checkbox" {% if landfill_form1.s4 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s5" type="checkbox" {% if landfill_form1.s5 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s6" type="checkbox" {% if landfill_form1.s6 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s7" type="checkbox" {% if landfill_form1.s7 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s8" type="checkbox" {% if landfill_form1.s8 == "on" %} checked {% endif %}>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              திட கழிவுகளை சுத்தப்படுத்துதல் / மறுசுழற்சி செய்தல் / சிகிச்சை செய்தல்
+              <br>
+              (i) கழிவுப்பொருட்களின் மொத்த அளவு நாள் ஒன்றுக்கு செயல்படுத்தப்படும்
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; மறுசுழற்சி செய்ய வேண்டிய கழிவு அளவு
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; கழிவுக்கான கழிவு சிகிச்சை
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; குப்பைத்தொட்டியில் கழிவுப்பொருளை அகற்றும் அளவு
+              <br>
+              (ii) செயலாக்கப்படும் கழிவுக்கான பயன்பாட்டு திட்டம் (தயாரிப்பு பயன்பாடு)
+              <br>
+              (iii) அகற்றும் முறை (விவரங்களை இணைத்தல்)
+              <br>
+               Leachate அளவு
+              <br>
+               லேசாட் க்கான சிகிச்சை தொழில்நுட்பம்
+              <br>
+               (iv) சுற்றுச்சூழல் மாசுபாடு தடுப்பு மற்றும் கட்டுப்பாட்டுக்கு எடுக்கப்பட வேண்டிய நடவடிக்கைகள்
+              <br>
+               (v) ஆலைகளில் பணியாற்றும் தொழிலாளர்களின் பாதுகாப்புக்காக எடுக்கப்படும் நடவடிக்கைகள்
+              <br>
+               (vi) திட கழிவு செயலாக்கம் / மறுசுழற்சி / சிகிச்சை / அகற்றல் வசதி பற்றிய விவரங்கள் (இணைக்கப்பட வேண்டும்)
+            </td>
+            <td>
+              <textarea name="s9" rows="13" cols="35%">{{landfill_form1.s9}}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>
+               திட கழிவு அகற்றல்
+              <br>
+               அடையாளம் காணப்பட்ட தளங்களின் எண்ணிக்கை
+              <br>
+               நாளொன்றுக்கு கழிவுப்பொருட்களின் அளவு குறையும்
+              <br>
+               தள தேர்வுக்குத் தேவையான முறை அல்லது அடிப்படை விவரங்கள் (இணைக்கவும்)
+              <br>
+               செயல்பாட்டின் கீழ் இருக்கும் தளத்தின் விவரங்கள்
+              <br>
+               நிலப்பரப்பின் முறை மற்றும் செயல்பாட்டு விவரங்கள்
+              <br>
+               சுற்றுச்சூழல் மாசுபாடு சரிபார்க்க எடுக்கும் நடவடிக்கைகள்
+            </td>
+            <td>
+              <textarea name="s10" rows="7" cols="35%">{{landfill_form1.s10}}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>  வேறு எந்த தகவலும். </td>
+            <td>
+              <textarea name="s11" rows="3" cols="35%">
+                {{landfill_form1.s11}}
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td><input type="submit" value="சமர்ப்பி" class="btn btn-primary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    // var latitude = {{latitude}};
+    // var longitude = {{longitude}};
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/form1.js" %}">
+  </script>
+{% endblock %}

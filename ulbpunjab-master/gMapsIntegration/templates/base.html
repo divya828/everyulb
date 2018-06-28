@@ -1,0 +1,140 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{% endblock %}</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap css 4.xx-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+  {% block stylesheet %}{% endblock %}
+</head>
+<body>
+  <div id="header">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" style="background-color: #414146;">
+      <a class="navbar-brand" href="{% url "home" %}">
+        <div class="Shape">
+          <div class="CPCB">
+            PWSS
+          </div>
+        </div>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <div class="Dumpsite-Mapping-R">
+            Punjab Water Supply & Sanitation Project
+          </div>
+
+        </ul>
+        <form class="form-inline col-md-2 input-group input-group-sm" action="{% url "search" %}" method="post">
+          {% csrf_token %}
+          <input class="form-control input-group-addon" type="text" placeholder="Search(Village Name)" aria-label="Search" name="search" id="search">
+          <button class="btn btn-outline-success input-group-addon" type="submit" name="search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+      </div>
+    </nav>
+    {% block header %}
+    {% endblock %}
+  </div>
+
+</nav>
+  <div id="main_content">
+    <div class="container-fluid">
+          <div class="row">
+            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                  <div class="list-inline center-block text-center">
+                      <h1><strong>{{landfill.name}}</strong></h1>
+                  </div>
+
+                </li>
+                <li class="nav-item stages">
+                  Stages of Project
+                </li>
+                <!-- <li class="nav-item">
+                  <br>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link {% block data_mapping %} {% endblock %}" href="{% url 'home' %}">
+                    {% block image_data_mapping %}
+                    {% endblock %}
+                    &nbsp;&nbsp;DATA MAPPING
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fa fa-cog float-left"></i>
+                    &nbsp;&nbsp;PLANNING
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fa fa-telegram float-left"></i>
+                    &nbsp;&nbsp;EXECUTION
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% block monitoring %}{% endblock %}" {% block monitoring_url %}{% endblock %}>
+                    <img src="{% static 'images/ic-done.svg' %}" class="float-left">
+                    &nbsp;&nbsp;MONITORING & EVALUATION
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+              <div class="container-fluid">
+                <div class="row-fluid">
+                  <!-- <div class="states-selection">
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="state">Select State</label>
+                        <select class="form-control" name="state" id="state">
+                          {% for x in states %}
+                            <option value="{{x}}">{{x}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="district">Select District</label>
+                        <select class="form-control" name="district" id="district">
+                            {% for x in districts %}
+                              <option value="{{x}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+  <!-- Bootstrap JS, Jquery, Popper  -->
+  {% block script %}
+  {% endblock %}
+  <!-- <script src="{% static 'js/base.js' %}"> -->
+</body>
+</html>

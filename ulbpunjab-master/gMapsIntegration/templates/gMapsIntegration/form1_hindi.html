@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Form1: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/form1.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "home" %}">EveryULB</a>
+  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+    <ul class="navbar-nav container">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "home" %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "landfilladd" %}">Add Landfills</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "add_data" %}">Add Data</a>
+      </li>
+      <form class="form-inline" action="{% url "search" %}" method="post">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
+      </form>
+    </ul>
+  <!-- </div> -->
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="TOP" align="center">
+    <h1><a href="{% url "form1" ids=landfill.id langs=0 %}">अंग्रेजी में भाषा बदलें</a></h1>
+    <h1><a href="{% url "form1" ids=landfill.id langs=2 %}">Change language to Tamil</a></h1>
+  </div>
+  <div class="Title" align="center">
+    <h1>{{landfill.name}} के लिए फॉर्म नंबर 1</h1>
+  </div>
+
+  <div class="row-fluid">
+    <form action="?" method="post">
+      {% csrf_token %}
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td> उनके द्वारा नियुक्त स्थानीय निकाय / एजेंसी का नाम / सुविधा का ऑपरेटर </td>
+            <td><input type="text" name="s0" value="{{landfill_form1.s0}}"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              पत्राचार का पता
+              <br>
+              टेलीफ़ोन नंबर।
+              <br>
+              फैक्स नंबर &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ई-मेल
+            </td>
+            <td>
+              <textarea name="s1" rows="3" cols="35%">
+                {{landfill_form1.s1}}
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td> नोडल अधिकारी और पदनाम (प्रसंस्करण / उपचार या निपटान की सुविधा के संचालन के लिए जिम्मेदार स्थानीय निकाय या एजेंसी द्वारा अधिकृत अधिकारी) </td>
+            <td><input type="text" name="s2" value="{{landfill_form1.s2}}"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td> सुविधा की स्थापना और संचालन के लिए आवश्यक प्राधिकरण (कृपया चयन करें) </td>
+            <td>
+              <select name="s3">
+                <option value="t1" {% if landfill_form1.s3 == "t1" %} selected="selected" {% endif %}> अपशिष्ट प्रसंस्करण </option>
+                <option value="t2" {% if landfill_form1.s3 == "t2" %} selected="selected" {% endif %}> पुनर्चक्रण </option>
+                <option value="t3" {% if landfill_form1.s3 == "t3" %} selected="selected" {% endif %}> इलाज </option>
+                <option value="t4" {% if landfill_form1.s3 == "t4" %} selected="selected" {% endif %}> लैंडफिल पर निपटान </option>
+              </select> </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              दस्तावेजों की प्रतियां संलग्न करें
+              <br>
+              साइट निकासी (स्थानीय निकाय)
+              <br>
+              पर्यावरण निकासी का सबूत
+              <br>
+              स्थापना के लिए सहमति
+              <br>
+              नगरपालिका प्राधिकरण और ऑपरेटिंग एजेंसी के बीच समझौता
+              <br>
+              परियोजना पर निवेश और अपेक्षित वापसी
+            </td>
+            <td>
+              <br>
+              <input name="s4" type="checkbox" {% if landfill_form1.s4 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s5" type="checkbox" {% if landfill_form1.s5 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s6" type="checkbox" {% if landfill_form1.s6 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s7" type="checkbox" {% if landfill_form1.s7 == "on" %} checked {% endif %}>
+              <br>
+              <input name="s8" type="checkbox" {% if landfill_form1.s8 == "on" %} checked {% endif %}>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              ठोस कचरे का प्रसंस्करण / रीसाइक्लिंग / उपचार
+              <br>
+              (i) कचरे की कुल मात्रा प्रति दिन संसाधित की जानी चाहिए
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;कचरे की मात्रा पुनर्नवीनीकरण करने के लिए
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;इलाज के लिए कचरे की मात्रा
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;कचरे की मात्रा लैंडफिल में निपटाई जाएगी
+              <br>
+              (ii) अपशिष्ट प्रक्रिया के लिए उपयोगिता कार्यक्रम (उत्पाद उपयोग)
+              <br>
+              (iii) निपटान के लिए कार्यविधि (विवरण संलग्न करें)
+              <br>
+              लीचेट की मात्रा
+              <br>
+              लीचेट के लिए उपचार तकनीक
+              <br>
+              (iv) पर्यावरण प्रदूषण की रोकथाम और नियंत्रण के लिए किए जाने वाले उपाय
+              <br>
+              (v) संयंत्र में कार्यरत श्रमिकों की सुरक्षा के लिए किए जाने वाले उपाय
+              <br>
+              (vi) ठोस अपशिष्ट प्रसंस्करण / रीसाइक्लिंग / उपचार / निपटान की सुविधा (संलग्न करने के लिए) पर विवरण
+            </td>
+            <td>
+              <textarea name="s9" rows="13" cols="35%">{{landfill_form1.s9}}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>
+              ठोस कचरे का निपटान
+              <br>
+              पहचान की गई साइटों की संख्या
+              <br>
+              कचरे की मात्रा प्रति दिन निपटारा करने के लिए
+              <br>
+              साइट चयन (संलग्न) के लिए कार्यप्रणाली या मापदंड का विवरण
+              <br>
+              ऑपरेशन के तहत मौजूदा साइट का विवरण
+              <br>
+              लैंडफिलिंग का कार्यप्रणाली और परिचालन विवरण
+              <br>
+              पर्यावरणीय प्रदूषण को रोकने के लिए किए गए उपाय
+            </td>
+            <td>
+              <textarea name="s10" rows="7" cols="35%">{{landfill_form1.s10}}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td> कोई अन्य जानकारी. </td>
+            <td>
+              <textarea name="s11" rows="3" cols="35%">
+                {{landfill_form1.s11}}
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td><input type="submit" value="जमा करें" class="btn btn-primary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    // var latitude = {{latitude}};
+    // var longitude = {{longitude}};
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/form1.js" %}">
+  </script>
+{% endblock %}

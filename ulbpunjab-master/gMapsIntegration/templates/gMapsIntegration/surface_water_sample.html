@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Surface water Sample: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/surface_water_sample.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block data_mapping %}
+  active
+{% endblock %}
+{% block image_data_mapping %}
+  <img src="{% static 'images/ic-report.svg' %}" class="float-left">
+{% endblock %}
+{% block monitoring_url %}href="{% url 'monitoring' ids=landfill.id %}"{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="Title">
+    <h1><a href="{% url "surface_water" ids=landfill.id %}">Surface Water -> </a> Sample No. {{sam_num}} Surface Water for {{landfill.name}}</h1>
+  </div>
+
+  <div class="row-fluid">
+    <form action="?" method="post">
+      {% csrf_token %}
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>SI. No</th>
+            <th>Parameter</th>
+            <th>Unit</th>
+            <th>Method of Testing</th>
+            <th>Surface Water Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>pH</td>
+            <td>-</td>
+            <td>SM 4500 H+ B</td>
+            <td><input type="text" name="s0" value="{{landfill_sam_data.0.data}}"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Electrical Conductivity at 25°C</td>
+            <td>μs/cm</td>
+            <td>SM 2510 B</td>
+            <td><input type="text" name="s1" value="{{landfill_sam_data.1.data}}"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Total Suspended Solids at 105°C</td>
+            <td>mg/L</td>
+            <td>SM 2540 D</td>
+            <td><input type="text" name="s2" value="{{landfill_sam_data.2.data}}"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Total Suspended Solids at 180°C</td>
+            <td>mg/L</td>
+            <td>SM 2540 C</td>
+            <td><input type="text" name="s3" value="{{landfill_sam_data.3.data}}"></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Chloride as Cl</td>
+            <td>mg/L</td>
+            <td>SM 4500-Cl</td>
+            <td><input type="text" name="s4" value="{{landfill_sam_data.4.data}}"></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Sulphate as SO 4</td>
+            <td>mg/L</td>
+            <td>SM 4500-SO 4 E</td>
+            <td><input type="text" name="s5" value="{{landfill_sam_data.5.data}}"></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Phosphate as PO 4</td>
+            <td>mg/L</td>
+            <td>SM 4500-PO 4 D</td>
+            <td><input type="text" name="s6" value="{{landfill_sam_data.6.data}}"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Nitrate as NO 3</td>
+            <td>mg/L</td>
+            <td>SM 4500-NO 3</td>
+            <td><input type="text" name="s7" value="{{landfill_sam_data.7.data}}"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Chemical Oxygen Demand</td>
+            <td>mg/L</td>
+            <td>SM 5220</td>
+            <td><input type="text" name="s8" value="{{landfill_sam_data.8.data}}"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Biochemical Oxygen Demand</td>
+            <td>mg/L</td>
+            <td>IS : 3025, Part-44</td>
+            <td><input type="text" name="s9" value="{{landfill_sam_data.9.data}}"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Dissolved Oxygen</td>
+            <td>mg/L</td>
+            <td>SM 4500-O-C</td>
+            <td><input type="text" name="s10" value="{{landfill_sam_data.10.data}}"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Oil & Grease</td>
+            <td>mg/L</td>
+            <td>SM 5520 B</td>
+            <td><input type="text" name="s11" value="{{landfill_sam_data.11.data}}"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Lead as Pb</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s12" value="{{landfill_sam_data.12.data}}"></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Cadmium as Cd</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s13" value="{{landfill_sam_data.13.data}}"></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Chromium as Cr</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s14" value="{{landfill_sam_data.14.data}}"></td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Zinc as Zn</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s15" value="{{landfill_sam_data.15.data}}"></td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>Mercury as Hg</td>
+            <td>mg/L</td>
+            <td>EPA 200.8</td>
+            <td><input type="text" name="s16" value="{{landfill_sam_data.16.data}}"></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>Copper as Cu</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s17" value="{{landfill_sam_data.17.data}}"></td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>Nickel as Ni</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s18" value="{{landfill_sam_data.18.data}}"></td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>Arsenic as As</td>
+            <td>mg/L</td>
+            <td>SM 3125</td>
+            <td><input type="text" name="s19" value="{{landfill_sam_data.19.data}}"></td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>BTEX</td>
+            <td>mg/L</td>
+            <td>USEPA 8260</td>
+            <td><input type="text" name="s20" value="{{landfill_sam_data.20.data}}"></td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>Chlorinated Solvents</td>
+            <td>mg/L</td>
+            <td>USEPA 8260</td>
+            <td><input type="text" name="s21" value="{{landfill_sam_data.21.data}}"></td>
+          </tr>
+          <tr>
+            <td colspan="4" align="center"><strong>Completed?</strong></td>
+            <td><input name="check" type="checkbox" checked></td>
+          </tr>
+          <tr>
+            <td colspan="4"></td>
+            <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    var api_sendDistricts = "{% url 'api_sendDistricts' %}"
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/surface_water_sample.js" %}">
+  </script>
+{% endblock %}

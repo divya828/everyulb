@@ -1,0 +1,34 @@
+.CPCB {
+  width: 45px;
+  height: 18px;
+  /*font-family: .SFNSText;*/
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffa000;
+  vertical-align: middle;
+  margin: auto;
+}
+.Shape {
+  width: 70.6px;
+  height: 27.9px;
+  background-color: #ffffff;
+  border: solid 0.5px #b4b4b4;
+  border-radius: 25px;
+  text-align: center;
+  vertical-align: middle;
+}
+.Dumpsite-Mapping-R {
+  width: 414px;
+  height: 23px;
+  /*font-family: .SFNSText;*/
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  color: #ffffff;
+}
+
+body {
+  padding-top: 50px;
+  background: #f7f7fa;
+}

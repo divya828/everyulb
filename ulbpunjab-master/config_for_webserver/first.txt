@@ -1,0 +1,22 @@
+ServerName www.scibolt.com
+
+Alias /media/ /home/dash/landfillrehab/media/
+Alias /static/ /home/dash/landfillrehab/static/
+
+<Directory /home/dash/landfillrehab/static>
+Require all granted
+</Directory>
+
+<Directory /home/dash/landfillrehab/media>
+Require all granted
+</Directory>
+
+<Directory /home/dash/landfillrehab/landfillrehab>
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>
+
+WSGIScriptAlias / /home/dash/landfillrehab/landfillrehab/wsgi.py
+WSGIDaemonProcess landfillrehab python-path=/home/dash/landfillrehab
+WSGIProcessGroup landfillrehab

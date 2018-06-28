@@ -1,0 +1,8 @@
+#chart, #chart_surface_water, #chart_ground_water, #chart_sediment{
+   width: 800px;
+   height: 400px;
+}
+.row-fluid.white-part {
+  padding: 10px;
+  background: #FFFFFF;
+}

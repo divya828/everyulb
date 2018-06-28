@@ -1,0 +1,80 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+{% block title %}HOME{% endblock %}
+{% block stylesheet %}<link href="{% static "css/home.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+
+      <div class="row">
+        <h3 id="info-box" align="center">Punjab</h3>
+        <form>
+
+          <br>
+          <input id="pac-input" type="text" placeholder="Enter Location" class="form-control">
+        </form>
+      </div>
+      <div class="row white-part">
+        <div class="col">
+            <div id="map"></div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <span class="pull-right date_time">4/12/17 10:45</span>
+              Abhowal in Hoshiarpur uploaded surface water sample data.
+              <div class="card">
+                <div class="card-body priority">
+                  <a href="/details/11/">Uranium level crosses threshold</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="card">
+            <div class="card-body">
+              <span class="pull-right date_time">3/12/17 08:23</span>
+              Algon in Tarn Taran added some village demands.
+              <div class="card">
+                <div class="card-body med_priority">
+                  <a href="/details/14/">Have a look at the demands.</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="card">
+            <div class="card-body">
+              <span class="pull-right date_time">29/11/17 15:29</span>
+              Ber Kalan in Ludhiana exceeded financial aid.
+              <div class="card">
+                <div class="card-body med_priority">
+                  <a href="/details/23/">Review financial aid</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places">
+  </script>
+  <script type="text/javascript">
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+    var states_url = "{% static "/media/districts/Punjab.geojson" %}"
+  </script>
+  <script src="{% static "js/home.js" %}">
+  </script>
+{% endblock %}

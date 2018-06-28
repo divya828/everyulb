@@ -1,0 +1,33 @@
+#map {
+  width: 500px;
+  height: 500px;
+}
+#more_details {
+  font-size: 20px;
+
+}
+
+.row.white-part {
+  padding: 10px;
+  background: #FFFFFF;
+  /*margin-right: 0px !important;*/
+}
+
+.date_time {
+  background: #0FF;
+  border-radius: 5px;
+}
+
+.priority {
+  background: #FF0000;
+  border-radius: 5px;
+}
+
+.med_priority {
+  background: #00FF00;
+  border-radius: 5px;
+}
+
+#infobox {
+
+}

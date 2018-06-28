@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Risk Index Work Sheet for {{details_extra.landfill}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/add_more.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "home" %}">EveryULB</a>
+  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+    <ul class="navbar-nav container">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "home" %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "landfilladd" %}">Add Landfills</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "add_data" %}">Add Data</a>
+      </li>
+      <form class="form-inline" action="{% url "search" %}" method="post">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
+      </form>
+    </ul>
+  <!-- </div> -->
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="Title" align="center">
+    <h1><a href="{% url "edit_add_more" ids=details_extra.landfill.id %}">EDIT</a></h1>
+    <h1>Risk Index Work Sheet for {{details_extra.landfill}}</h1>
+  </div>
+
+
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Attribute</th>
+        <th>Attribute Weightage</th>
+        <th>Attribute Measurement</th>
+        <th>Sensitivity Index</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="6" align="center"><strong>I - Site specific criteria</strong></td>
+      </tr>
+      <tr>
+        <th scope="row">1</th>
+        <td>Distance from nearest water supply source (m)</td>
+        <td>69</td>
+        <td>{{details_extra.distance_water}}</td>
+        <td>{{sen.distance_water.sensitivity}}</td>
+        <td>{{sen.distance_water.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Depth of filling of waste (m)</td>
+        <td>64</td>
+        <td>{{details_extra.depth_waste}}</td>
+        <td>{{sen.depth_waste.sensitivity}}</td>
+        <td>{{sen.depth_waste.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td >Area of the dumpsite (Ha)</td>
+        <td>61</td>
+        <td >{{details_extra.area}}</td>
+        <td >{{sen.area.sensitivity}}</td>
+        <td >{{sen.area.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td >Groundwater depth (m)</td>
+        <td>54</td>
+        <td >{{details_extra.groundwater_depth}}</td>
+        <td >{{sen.groundwater_depth.sensitivity}}</td>
+        <td >{{sen.groundwater_depth.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td >Permeability of soil (1 x 10 cm/s)</td>
+        <td>54</td>
+        <td >{{details_extra.soil_perm}}</td>
+        <td >{{sen.soil_perm.sensitivity}}</td>
+        <td >{{sen.soil_perm.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td >Groundwater quality</td>
+        <td>50</td>
+        <td >{{details_extra.groundwater_quality}}</td>
+        <td >{{sen.groundwater_quality.sensitivity}}</td>
+        <td >{{sen.groundwater_quality.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td >Distance to critical habitats such as wetlands and reserved forest (km)</td>
+        <td>46</td>
+        <td >{{details_extra.distance_habitat}}</td>
+        <td >{{sen.distance_habitat.sensitivity}}</td>
+        <td >{{sen.distance_habitat.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td >Distance to the nearest airport (km)</td>
+        <td>46</td>
+        <td >{{details_extra.distance_airport}}</td>
+        <td >{{sen.distance_airport.sensitivity}}</td>
+        <td >{{sen.distance_airport.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td >Distance from surface water body (m)</td>
+        <td>41</td>
+        <td >{{details_extra.distance_water_body}}</td>
+        <td >{{sen.distance_water_body.sensitivity}}</td>
+        <td >{{sen.distance_water_body.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td >Type of underlying soil (% clay)</td>
+        <td>41</td>
+        <td >{{details_extra.type_soil}}</td>
+        <td >{{sen.type_soil.sensitivity}}</td>
+        <td >{{sen.type_soil.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">11</th>
+        <td >Life of the site for future use (years)</td>
+        <td>36</td>
+        <td >{{details_extra.life_future}}</td>
+        <td >{{sen.type_soil.sensitivity}}</td>
+        <td >{{sen.type_soil.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">12</th>
+        <td >Type of waste (MSW/HW)</td>
+        <td>30</td>
+        <td >{{details_extra.waste_type}}</td>
+        <td >{{sen.waste_type.sensitivity}}</td>
+        <td >{{sen.waste_type.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">13</th>
+        <td >Total quantity of waste at site (t)</td>
+        <td>30</td>
+        <td >{{details_extra.waste_quantity_site}}</td>
+        <td >{{sen.waste_quantity_site.sensitivity}}</td>
+        <td >{{sen.waste_quantity_site.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">14</th>
+        <td >Quantity of wastes disposed (t/day)</td>
+        <td>24</td>
+        <td >{{details_extra.waste_quantity_disposed}}</td>
+        <td >{{sen.waste_quantity_disposed.sensitivity}}</td>
+        <td >{{sen.waste_quantity_disposed.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">15</th>
+        <td >Distance to the nearest village in the predominant wind (m)</td>
+        <td>21</td>
+        <td >{{details_extra.distance_village}}</td>
+        <td >{{sen.distance_village.sensitivity}}</td>
+        <td >{{sen.distance_village.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">16</th>
+        <td >Flood proness (flood period in years)</td>
+        <td>16</td>
+        <td >{{details_extra.flood}}</td>
+        <td >{{sen.flood.sensitivity}}</td>
+        <td >{{sen.flood.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">17</th>
+        <td >Annual rainfall at site (cm/y)</td>
+        <td>11</td>
+        <td >{{details_extra.rainfall_annual}}</td>
+        <td >{{sen.rainfall_annual.sensitivity}}</td>
+        <td >{{sen.rainfall_annual.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">18</th>
+        <td >Distance from the city (km)</td>
+        <td>7</td>
+        <td >{{details_extra.distance_city}}</td>
+        <td >{{sen.distance_city.sensitivity}}</td>
+        <td >{{sen.distance_city.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">19</th>
+        <td >Public acceptance</td>
+        <td>7</td>
+        <td >{{details_extra.public_acceptance}}</td>
+        <td >{{sen.public_acceptance.sensitivity}}</td>
+        <td >{{sen.public_acceptance.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">20</th>
+        <td >Ambient air quality - CH 4 (%)</td>
+        <td>3</td>
+        <td >{{details_extra.ambient_air}}</td>
+        <td >{{sen.ambient_air.sensitivity}}</td>
+        <td >{{sen.ambient_air.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="6" align="center"><strong>II – Related to characteristics of waste at dumpsite</strong></td>
+      </tr>
+      <tr>
+        <th scope="row">21</th>
+        <td >Hazardous contents in waste (%)</td>
+        <td>71</td>
+        <td >{{details_extra.waste_hazard}}</td>
+        <td >{{sen.waste_hazard.sensitivity}}</td>
+        <td >{{sen.waste_hazard.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">22</th>
+        <td >Biodegradable fraction of waste at site (%)</td>
+        <td>66</td>
+        <td >{{details_extra.biodegradable_waste}}</td>
+        <td >{{sen.biodegradable_waste.sensitivity}}</td>
+        <td >{{sen.biodegradable_waste.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">23</th>
+        <td >Age of filling (years)</td>
+        <td>58</td>
+        <td >{{details_extra.age_filing}}</td>
+        <td >{{sen.age_filing.sensitivity}}</td>
+        <td >{{sen.age_filing.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">24</th>
+        <td >Moisture of waste at site (%)</td>
+        <td>26</td>
+        <td >{{details_extra.waste_moisture}}</td>
+        <td >{{sen.waste_moisture.sensitivity}}</td>
+        <td >{{sen.waste_moisture.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="6" align="center"><strong>III –Related to leachate quality</strong></td>
+      </tr>
+      <tr>
+        <th scope="row">25</th>
+        <td >BOD of leachate (mg/L)</td>
+        <td>36</td>
+        <td >{{details_extra.bod}}</td>
+        <td >{{sen.bod.sensitivity}}</td>
+        <td >{{sen.bod.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">26</th>
+        <td >COD of leachate (mg/L)</td>
+        <td>19</td>
+        <td >{{details_extra.cod}}</td>
+        <td >{{sen.cod.sensitivity}}</td>
+        <td >{{sen.cod.score}}</td>
+      </tr>
+      <tr>
+        <th scope="row">27</th>
+        <td >TDS of leachate (mg/L)</td>
+        <td>13</td>
+        <td >{{details_extra.tds}}</td>
+        <td >{{sen.tds.sensitivity}}</td>
+        <td >{{sen.tds.score}}</td>
+      </tr>
+      <tr>
+        <td colspan="5" align="center"><strong>Result</strong></td>
+        <td><strong>{{score}}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/add_more.js" %}">
+  </script>
+{% endblock %}

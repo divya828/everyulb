@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Add Data{% endblock %}
+{% block stylesheet %}<link href="{% static "css/add_data.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block data_mapping %}
+  active
+{% endblock %}
+{% block monitoring_url %}href="{% url 'home' %}"{% endblock %}
+
+{% block image_data_mapping %}
+  <img src="{% static 'images/ic-report.svg' %}" class="float-left">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="Title" align="center">
+    <h4>ADD DATA</h4>
+  </div>
+  <div class="row-fluid">
+      <div id="map">
+      </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="form-group">
+      <label for="latlng">Latitude, Longitude</label>
+      <input type="text" name="latlng" class="form-control" id="latlng" placeholder="Latitude,Longitude">
+    </div>
+    <div class="form-group">
+      <label for="area">Area(metres)</label>
+      <input type="text" name="area" class="form-control" id="area" placeholder="Area(meters)" value="1">
+    </div>
+    <div class="form-group">
+      <label for="title">Name</label>
+      <input type="text" name="title" class="form-control" id="title" placeholder="TITLE">
+    </div>
+    <input type="button" class="btn btn-primary" name="water" value="Add Water" id="water">
+    <input type="button" class="btn btn-primary" name="well" value="Add Well" id="well">
+    <input type="button" class="btn btn-primary" name="airport" value="Add Airport" id="airport">
+    <input type="button" class="btn btn-primary" name="highway" value="Add Highway" id="highway">
+    <input type="button" class="btn btn-primary" name="river" value="Add River" id="river">
+
+  </div>
+<!--
+  <div class="row-fluid">
+    <div class="col-xs-12 card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Coordinates(Lat, Lng) : </strong></li>
+      </ul>
+    </div>
+  </div> -->
+</div>
+{% endblock %}
+{% block script %}
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script>
+  <script type="text/javascript">
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="{% static "js/add_data.js" %}">
+  </script>
+{% endblock %}

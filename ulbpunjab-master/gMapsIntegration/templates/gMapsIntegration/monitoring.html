@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Water Supply: {{landfill.name}}{% endblock %}
+{% block stylesheet %}<link href="{% static "css/monitoring.css" %}" rel="stylesheet">{% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block monitoring %}
+  active
+{% endblock %}
+{% block image_data_mapping %}
+  <img src="{% static 'images/ic-report-dark.svg' %}" class="float-left">
+{% endblock %}
+{% block monitoring_url %}href="{% url 'monitoring' ids=landfill.id %}"{% endblock %}
+
+{% block content %}
+          <div class="container-fluid">
+            <div class="row-fluid white-part">
+              <h1>Surface Water Sample Quality</h1>
+              <div id="chart_surface_water">
+                <canvas id="myChart_surface_water"></canvas>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="surface_water_get_data"></label>
+                  <select class="form-control" name="surface_water_get_data" id="surface_water_get_data">
+                    <option value="s0">pH</option>
+                    <option value="s1">Electrical Conductivity at 25°C</option>
+                    <option value="s2">Total Suspended Solids at 105°C</option>
+                    <option value="s3">Total Suspended Solids at 180°C</option>
+                    <option value="s4">Chloride as Cl</option>
+                    <option value="s5">Sulphate as SO4</option>
+                    <option value="s6">Phosphate as PO4</option>
+                    <option value="s7">Nitrate as NO3</option>
+                    <option value="s8">Chemical Oxygen Demand</option>
+                    <option value="s9">Biochemical Oxygen Demand</option>
+                    <option value="s10">Dissolved Oxygen</option>
+                    <option value="s11">Oil & Grease</option>
+                    <option value="s12">Lead as Pb</option>
+                    <option value="s13">Cadmium as Cd</option>
+                    <option value="s14">Chromium as Cr</option>
+                    <option value="s15">Zinc as Zn</option>
+                    <option value="s16">Mercury as Hg</option>
+                    <option value="s17">Copper as Cu</option>
+                    <option value="s18">Nickel as Ni</option>
+                    <option value="s19">Arsenic as As</option>
+                    <option value="s20">BTEX</option>
+                    <option value="s21">Chlorinated Solvents</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row-fluid white-part">
+              <h1>Ground Water Sample Quality</h1>
+              <div id="chart_ground_water">
+                <canvas id="myChart_ground_water"></canvas>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="ground_water_get_data"></label>
+                  <select class="form-control" name="ground_water_get_data" id="ground_water_get_data">
+                    <option value="s0">pH</option>
+                    <option value="s1">Electrical Conductivity at 25°C</option>
+                    <option value="s2">Sulphate as SO4</option>
+                    <option value="s3">Phosphate as PO4</option>
+                    <option value="s4">Nitrate as NO3</option>
+                    <option value="s5">Oil & Grease</option>
+                    <option value="s6">Lead as Pb</option>
+                    <option value="s7">Cadmium as Cd</option>
+                    <option value="s8">Chromium as Cr</option>
+                    <option value="s9">Zinc as Zn</option>
+                    <option value="s10">Mercury as Hg</option>
+                    <option value="s11">Copper as Cu</option>
+                    <option value="s12">Nickel as Ni</option>
+                    <option value="s13">Arsenic as As</option>
+                    <option value="s14">BTEX</option>
+                    <option value="s15">Chlorinated Solvents</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            </div>
+        </main>
+      </div>
+    </div>
+
+
+{% endblock %}
+{% block script %}
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key={{key}}">
+  </script> -->
+  <script type="text/javascript">
+    var api_sendDistricts = "{% url 'api_sendDistricts' %}"
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js">
+  </script>
+  <script src="{% static "js/monitoring.js" %}">
+  </script>
+{% endblock %}
